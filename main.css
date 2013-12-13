@@ -1,0 +1,154 @@
+﻿body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 12px;
+}
+p
+{
+    font-family: Arial, Helvetica, sans-serif;
+}
+.ShowDemo
+{
+    margin: 20px;
+}
+/* popup style */
+.tiny-popup-mask
+{
+    position: absolute; 
+    z-index: 9998; 
+    top: 0px; 
+    left: 0px;
+    background-color: #000000; 
+    display: none; 
+    width: 100%; 
+    height: 100%; 
+    filter: alpha(opacity=70);
+    opacity: 0.7;
+}
+.tiny-popup
+{
+    position: absolute;
+    z-index: 9999; 
+    width: 495px;
+    height: auto;
+    background: #fff;
+    overflow: hidden;
+    padding: 15px 0 35px 0;
+    display: none;
+    font-size: 12px;
+}
+.tiny-popup-buttons
+{
+    background: url(images/popup-buttons.png) no-repeat;
+    display: inline-block;
+}
+*+html .tiny-popup-buttons
+{
+    display: inline;
+}
+.tiny-popup-header
+{
+    height: 13px;
+    clear: both;
+}
+.tiny-popup-close
+{
+    float: right;
+    width: 13px;
+    height: 13px;
+    margin-right: 16px;
+    cursor: pointer;
+    background-position: 0 -80px;
+}
+.tiny-popup-content
+{
+    margin: 0 35px 0 45px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #858585;
+    color: #3D4550;
+}
+.tiny-popup-content p
+{
+    margin: 15px 0 0 0;
+    line-height: 18px;
+}
+.tiny-popup-footer
+{
+    margin: 25px 45px 0 45px;
+    height: 35px;
+}
+.confirm
+{
+    float: left;
+    height: 35px;
+    overflow: hidden;
+}
+.confirm-btn
+{
+    background-position: 100% 0;
+    display: inline-block;
+    height: 35px;
+    position: relative;
+    cursor: pointer;
+    margin-left: 7px;
+}
+*+html .confirm-btn
+{
+    display: inline;
+}
+.confirm-btn input,
+.cancel-btn input
+{
+    background: none;
+    border: none;
+    font-weight: bold;
+    margin: 0;
+    padding: 9px 15px 12px 8px;
+    cursor: pointer;
+    overflow: visible;
+    width: auto;
+    height: 35px;
+    outline: none;
+}
+.confirm-btn .confirmbtn
+{
+    color: #fff;
+}
+.confirm-btn span, 
+.cancel-btn span
+{
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: -7px;
+    width: 7px;
+}
+.confirm-btn span.confirm-left
+{
+    background-position: 0 0;
+}
+.cancel-btn span.cancel-left
+{
+    background-position: 0 -40px;
+}
+.cancel
+{
+    float: left;
+    height: 35px;
+    margin-left: 20px;
+}
+.cancel-btn
+{
+    background-position: 100% -40px;
+    display: inline-block;
+    height: 35px;
+    position: relative;
+    cursor: pointer;
+}
+*+html .cancel-btn
+{
+    display: inline;
+}
+.cancel-btn .cancelbtn
+{
+    color: #333333;
+}
