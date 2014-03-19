@@ -6,7 +6,7 @@
         this.popup.data('tinypopup', this);
 
         var _this = this;
-        if (opts.reposition) {
+        if (opts.autoPosition) {
             $(window).bind('resize', function() {
                 _this.setPosition();
             });
@@ -30,18 +30,18 @@
             this.mask.css({ 'top': 0, 'left': 0 }).width(realWidth).height(realHeight);
             this.popup.css({ 'left': (ww - popupWidth) / 2, 'top': scrollTop + (wh - popupHeight) / 2 });
         },
-        show: function () {
+        open: function () {
             var _popup = this.popup;
-            this.settings.beforeShow();
+            this.settings.opening();
             this.setPosition();
-            this.mask.fadeIn(this.settings.fadeInTime, function () {
+            this.mask.fadeIn(this.settings.fading, function () {
                 _popup.show();
             });
         },
         close: function () {
             this.popup.hide();
             this.mask.hide();
-            this.settings.afterClose();
+            this.settings.closed();
         }
     };
 
@@ -79,9 +79,9 @@
 
     $.fn.tinyPopup.defaults = {
         mask: '.tiny-popup-mask',
-        fadeInTime: 300,
-        reposition: true,
-        beforeShow: function() { },
-        afterClose: function() { }
+        fading: 300,
+        autoPosition: true,
+        opening: function() { },
+        closed: function() { }
     };
 })(jQuery);

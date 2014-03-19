@@ -59,15 +59,15 @@
     $(function() {
 
         var popup = $('.tiny-popup').tinyPopup({
-			beforeShow: function() {
-				console.log('The tinyPopup show.');
+			opening: function() {
+				console.log('The tinyPopup opening.');
 			},
-			afterClose: function() {
-				console.log('The tinyPopup close');
+			closed: function() {
+				console.log('The tinyPopup closed');
 			}
 		});
         $('.ShowDemo').click(function () {
-            popup.tinyPopup('show');
+            popup.tinyPopup('open');
         });
 
         $('.tiny-popup-close, .cancel-btn').click(function () {
