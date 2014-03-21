@@ -32,7 +32,7 @@
         },
         open: function () {
             var _popup = this.popup;
-            this.settings.opening();
+            this.settings.beforeOpen();
             this.setPosition();
             this.mask.fadeIn(this.settings.fading, function () {
                 _popup.show();
@@ -41,7 +41,7 @@
         close: function () {
             this.popup.hide();
             this.mask.hide();
-            this.settings.closed();
+            this.settings.afterClose();
         }
     };
 
@@ -81,7 +81,7 @@
         mask: '.tiny-popup-mask',
         fading: 300,
         autoPosition: true,
-        opening: function() { },
-        closed: function() { }
+        beforeOpen: function() { },
+        afterClose: function() { }
     };
 })(jQuery);

@@ -59,11 +59,11 @@
     $(function() {
 
         var popup = $('.tiny-popup').tinyPopup({
-			opening: function() {
-				console.log('The tinyPopup opening.');
+			beforeOpen: function() {
+				console.log('The tinyPopup beforeOpen.');
 			},
-			closed: function() {
-				console.log('The tinyPopup closed');
+			afterClose: function() {
+				console.log('The tinyPopup afterClose');
 			}
 		});
         $('.ShowDemo').click(function () {
