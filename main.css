@@ -2,32 +2,29 @@
     font-family: Arial, Helvetica, sans-serif;
     font-size: 12px;
 }
-p
-{
+p {
     font-family: Arial, Helvetica, sans-serif;
 }
-.ShowDemo
-{
+.ShowDemo {
     margin: 20px;
 }
+
 /* popup style */
-.tiny-popup-mask
-{
-    position: absolute; 
-    z-index: 9998; 
-    top: 0px; 
+.tiny-popup-mask {
+    position: absolute;
+    z-index: 9998;
+    top: 0px;
     left: 0px;
-    background-color: #000000; 
-    display: none; 
-    width: 100%; 
-    height: 100%; 
+    background-color: #000000;
+    display: none;
+    width: 100%;
+    height: 100%;
     filter: alpha(opacity=70);
     opacity: 0.7;
 }
-.tiny-popup
-{
+.tiny-popup {
     position: absolute;
-    z-index: 9999; 
+    z-index: 9999;
     width: 495px;
     height: auto;
     background: #fff;
@@ -36,22 +33,18 @@ p
     display: none;
     font-size: 12px;
 }
-.tiny-popup-buttons
-{
+.tiny-popup-buttons {
     background: url(images/popup-buttons.png) no-repeat;
     display: inline-block;
 }
-*+html .tiny-popup-buttons
-{
+*+html .tiny-popup-buttons {
     display: inline;
 }
-.tiny-popup-header
-{
+.tiny-popup-header {
     height: 13px;
     clear: both;
 }
-.tiny-popup-close
-{
+.tiny-popup-close {
     float: right;
     width: 13px;
     height: 13px;
@@ -59,31 +52,26 @@ p
     cursor: pointer;
     background-position: 0 -80px;
 }
-.tiny-popup-content
-{
+.tiny-popup-content {
     margin: 0 35px 0 45px;
     padding-bottom: 32px;
     border-bottom: 1px solid #858585;
     color: #3D4550;
 }
-.tiny-popup-content p
-{
+.tiny-popup-content p {
     margin: 15px 0 0 0;
     line-height: 18px;
 }
-.tiny-popup-footer
-{
+.tiny-popup-footer {
     margin: 25px 45px 0 45px;
     height: 35px;
 }
-.confirm
-{
+.confirm {
     float: left;
     height: 35px;
     overflow: hidden;
 }
-.confirm-btn
-{
+.confirm-btn {
     background-position: 100% 0;
     display: inline-block;
     height: 35px;
@@ -91,13 +79,10 @@ p
     cursor: pointer;
     margin-left: 7px;
 }
-*+html .confirm-btn
-{
+*+html .confirm-btn {
     display: inline;
 }
-.confirm-btn input,
-.cancel-btn input
-{
+.confirm-btn input, .cancel-btn input {
     background: none;
     border: none;
     font-weight: bold;
@@ -109,46 +94,37 @@ p
     height: 35px;
     outline: none;
 }
-.confirm-btn .confirmbtn
-{
+.confirm-btn .confirmbtn {
     color: #fff;
 }
-.confirm-btn span, 
-.cancel-btn span
-{
+.confirm-btn span, .cancel-btn span {
     height: 100%;
     position: absolute;
     top: 0;
     left: -7px;
     width: 7px;
 }
-.confirm-btn span.confirm-left
-{
+.confirm-btn span.confirm-left {
     background-position: 0 0;
 }
-.cancel-btn span.cancel-left
-{
+.cancel-btn span.cancel-left {
     background-position: 0 -40px;
 }
-.cancel
-{
+.cancel {
     float: left;
     height: 35px;
     margin-left: 20px;
 }
-.cancel-btn
-{
+.cancel-btn {
     background-position: 100% -40px;
     display: inline-block;
     height: 35px;
     position: relative;
     cursor: pointer;
 }
-*+html .cancel-btn
-{
+*+html .cancel-btn {
     display: inline;
 }
-.cancel-btn .cancelbtn
-{
+.cancel-btn .cancelbtn {
     color: #333333;
 }

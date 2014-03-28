@@ -14,7 +14,7 @@
     }
 
     popupLayer.prototype = {
-        setPosition: function () {
+        setPosition: function() {
             var scrollWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
             var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
             var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
@@ -27,18 +27,24 @@
             var popupWidth = this.popup.width();
             var popupHeight = this.popup.height();
 
-            this.mask.css({ 'top': 0, 'left': 0 }).width(realWidth).height(realHeight);
-            this.popup.css({ 'left': (ww - popupWidth) / 2, 'top': scrollTop + (wh - popupHeight) / 2 });
+            this.mask.css({
+                'top': 0,
+                'left': 0
+            }).width(realWidth).height(realHeight);
+            this.popup.css({
+                'left': (ww - popupWidth) / 2,
+                'top': scrollTop + (wh - popupHeight) / 2
+            });
         },
-        open: function () {
+        open: function() {
             var _popup = this.popup;
             this.settings.beforeOpen();
             this.setPosition();
-            this.mask.fadeIn(this.settings.fading, function () {
+            this.mask.fadeIn(this.settings.fading, function() {
                 _popup.show();
             });
         },
-        close: function () {
+        close: function() {
             this.popup.hide();
             this.mask.hide();
             this.settings.afterClose();
@@ -48,15 +54,15 @@
     $.fn.tinyPopup = function() {
         var args = Array.prototype.slice.call(arguments, 0);
         var opts;
-		
+
         return this.each(function() {
             var _this = $(this);
-            if (typeof args.length === 0 || typeof(args[0]) ===  'object') {
+            if (typeof args.length === 0 || typeof(args[0]) === 'object') {
                 opts = args.length === 0 ? $.fn.tinyPopup.defaults : $.extend({}, $.fn.tinyPopup.defaults, args[0]);
-                opts.popup =_this;
+                opts.popup = _this;
                 new popupLayer(opts);
             }
-            else if (typeof (args[0]) === 'string') {
+            else if (typeof(args[0]) === 'string') {
                 var method = args[0];
                 var popup = _this.data('tinypopup');
 
@@ -81,7 +87,7 @@
         mask: '.tiny-popup-mask',
         fading: 300,
         autoPosition: true,
-        beforeOpen: function() { },
-        afterClose: function() { }
+        beforeOpen: function() {},
+        afterClose: function() {}
     };
 })(jQuery);
