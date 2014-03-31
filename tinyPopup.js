@@ -15,22 +15,43 @@
 
     popupLayer.prototype = {
         setPosition: function() {
-            var scrollWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
-            var scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
-            var clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
-            var clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
-            var scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-            var realWidth = scrollWidth > clientWidth ? scrollWidth : clientWidth;
-            var realHeight = scrollHeight > clientHeight ? scrollHeight : clientHeight;
-            var ww = $(window).width();
-            var wh = $(window).height();
-            var popupWidth = this.popup.width();
-            var popupHeight = this.popup.height();
+            var scrollWidth, scrollHeight, clientWidth, clientHeight, scrollTop, realWidth, realHeight, ww, wh, popupWidth, popupHeight;
+            var $container = $(this.settings.container);
 
-            this.mask.css({
-                'top': 0,
-                'left': 0
-            }).width(realWidth).height(realHeight);
+            if (this.settings.container.toLowerCase() === 'body') {
+                scrollWidth = document.documentElement.scrollWidth || document.body.scrollWidth;
+                scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+                clientWidth = document.documentElement.clientWidth || document.body.clientWidth;
+                clientHeight = document.documentElement.clientHeight || document.body.clientHeight;
+                scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+                realWidth = scrollWidth > clientWidth ? scrollWidth : clientWidth;
+                realHeight = scrollHeight > clientHeight ? scrollHeight : clientHeight;
+                ww = $(window).width();
+                wh = $(window).height();
+                popupWidth = this.popup.outerWidth();
+                popupHeight = this.popup.outerHeight();
+            }
+            else {
+                scrollWidth = $container[0].scrollWidth;
+                scrollHeight = $container[0].scrollHeight;
+                clientWidth = $container[0].clientWidth;
+                clientHeight = $container[0].clientHeight;
+                scrollTop = $container[0].scrollTop;
+                realWidth = scrollWidth > clientWidth ? scrollWidth : clientWidth;
+                realHeight = scrollHeight > clientHeight ? scrollHeight : clientHeight;
+                ww = $container[0].clientWidth;
+                wh = $container[0].clientHeight;
+                popupWidth = this.popup.outerWidth();
+                popupHeight = this.popup.outerHeight();
+            }
+
+            if (this.hasMaskLayer()) {
+                this.mask.css({
+                    'top': 0,
+                    'left': 0
+                }).width(realWidth).height(realHeight);
+            }
+
             this.popup.css({
                 'left': (ww - popupWidth) / 2,
                 'top': scrollTop + (wh - popupHeight) / 2
@@ -40,14 +61,31 @@
             var _popup = this.popup;
             this.settings.beforeOpen();
             this.setPosition();
-            this.mask.fadeIn(this.settings.fading, function() {
-                _popup.show();
-            });
+
+            if (this.hasMaskLayer()) {
+                this.mask.fadeIn(this.settings.fading, function() {
+                    _popup.show();
+                });
+            }
+            else {
+                _popup.fadeIn(this.settings.fading);
+            }
         },
         close: function() {
             this.popup.hide();
-            this.mask.hide();
+            if (this.hasMaskLayer()) {
+                this.mask.hide();
+            }
             this.settings.afterClose();
+        },
+        hasMaskLayer: function() {
+            var mask = this.settings.mask;
+            if (mask && mask.length > 0 && $(mask).length > 0) {
+                return true;
+            }
+            else {
+                return false;
+            }
         }
     };
 
@@ -85,6 +123,7 @@
 
     $.fn.tinyPopup.defaults = {
         mask: '.tiny-popup-mask',
+        container: 'body',
         fading: 300,
         autoPosition: true,
         beforeOpen: function() {},

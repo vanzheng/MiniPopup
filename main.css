@@ -82,7 +82,8 @@ p {
 *+html .confirm-btn {
     display: inline;
 }
-.confirm-btn input, .cancel-btn input {
+.confirm-btn input,
+.cancel-btn input {
     background: none;
     border: none;
     font-weight: bold;
@@ -97,7 +98,8 @@ p {
 .confirm-btn .confirmbtn {
     color: #fff;
 }
-.confirm-btn span, .cancel-btn span {
+.confirm-btn span,
+.cancel-btn span {
     height: 100%;
     position: absolute;
     top: 0;

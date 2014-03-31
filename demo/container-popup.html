@@ -1,0 +1,106 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>Popup Demo Page</title>
+    <link type="text/css" rel="Stylesheet" href="../main.css" />
+    <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="../tinyPopup.js"></script>
+    <style type="text/css">
+    .box {
+        width: 800px;
+        height: 600px;
+        margin: 20px;
+        border: 1px solid #000;
+        position: relative;
+    }
+    </style>
+</head>
+
+<body>
+    <input type="button" class="ShowDemo" value="Show Popup" />
+    <div class="box">
+        <p>Content box.</p>
+        <div class="tiny-popup-mask" style="filter: alpha(opacity=70); opacity: 0.7;"></div>
+        <div class="tiny-popup">
+            <div class="tiny-popup-header">
+                <div class="tiny-popup-buttons tiny-popup-close" title="Close"></div>
+            </div>
+            <div class="tiny-popup-content">
+                <p>Some your content here 1. Some your content here 1.</p>
+                <p>Some your content here 2. Some your content here 2.</p>
+                <p>Some your content here 3. Some your content here 3.</p>
+                <p>Some your content here 4. Some your content here 4.</p>
+                <p>Some your content here 5. Some your content here 5.</p>
+            </div>
+            <div class="tiny-popup-footer">
+                <div class="confirm">
+                    <div class="tiny-popup-buttons confirm-btn">
+                        <input type="button" class="confirmbtn" value="Confirm" />
+                        <span class="tiny-popup-buttons confirm-left"></span>
+                    </div>
+                </div>
+                <div class="cancel">
+                    <div class="tiny-popup-buttons cancel-btn">
+                        <input type="button" class="cancelbtn" value="Cancel" />
+                        <span class="tiny-popup-buttons cancel-left"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="button" class="ShowDemo" value="Show Popup" />
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+    <p>
+        Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here. Some your paragraph content here.
+    </p>
+
+
+    <script type="text/javascript">
+    $(function() {
+
+        var popup = $('.tiny-popup').tinyPopup({
+            container: '.box',
+            beforeOpen: function() {
+                console.log('The tinyPopup beforeOpen.');
+            },
+            afterClose: function() {
+                console.log('The tinyPopup afterClose');
+            }
+        });
+        $('.ShowDemo').click(function() {
+            popup.tinyPopup('open');
+        });
+
+        $('.tiny-popup-close, .cancel-btn').click(function() {
+            popup.tinyPopup('close');
+        });
+    });
+    </script>
+</body>
+
+</html>
