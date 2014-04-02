@@ -6,7 +6,7 @@
         this.popup.data('tinypopup', this);
 
         var _this = this;
-        if (opts.autoPosition) {
+        if (opts.adaptive) {
             $(window).bind('resize', function() {
                 _this.setPosition();
             });
@@ -63,12 +63,11 @@
             this.setPosition();
 
             if (this.hasMaskLayer()) {
-                this.mask.fadeIn(this.settings.fading, function() {
-                    _popup.show();
-                });
+                this.mask.fadeIn(this.settings.speed);
+                _popup.fadeIn(this.settings.speed);
             }
             else {
-                _popup.fadeIn(this.settings.fading);
+                _popup.fadeIn(this.settings.speed);
             }
         },
         close: function() {
@@ -124,8 +123,8 @@
     $.fn.tinyPopup.defaults = {
         mask: '.tiny-popup-mask',
         container: 'body',
-        fading: 300,
-        autoPosition: true,
+        speed: 300,
+        adaptive: true,
         beforeOpen: function() {},
         afterClose: function() {}
     };
