@@ -1,5 +1,5 @@
 (function($) {
-    function popupLayer(opts) {
+    function PopupLayer(opts) {
         this.settings = opts;
         this.mask = $(opts.mask);
         this.popup = opts.popup;
@@ -13,7 +13,7 @@
         }
     }
 
-    popupLayer.prototype = {
+    PopupLayer.prototype = {
         setPosition: function() {
             var scrollWidth, scrollHeight, clientWidth, clientHeight, scrollTop, realWidth, realHeight, ww, wh, popupWidth, popupHeight;
             var $container = $(this.settings.container);
@@ -94,24 +94,28 @@
 
         return this.each(function() {
             var _this = $(this);
+
+            // If the arguments is object, create a new PopupLayer object.
             if (typeof args.length === 0 || typeof(args[0]) === 'object') {
                 opts = args.length === 0 ? $.fn.tinyPopup.defaults : $.extend({}, $.fn.tinyPopup.defaults, args[0]);
                 opts.popup = _this;
-                new popupLayer(opts);
+                new PopupLayer(opts);
             }
+
+            // If the arguments is a string, get PopupLayer instance from data.
             else if (typeof(args[0]) === 'string') {
                 var method = args[0];
-                var popup = _this.data('tinypopup');
+                var popupLayer = _this.data('tinypopup');
 
-                if (popup === undefined) {
+                if (popupLayer === undefined) {
                     return;
                 }
 
-                if (popup[method] === undefined) {
+                if (popupLayer[method] === undefined) {
                     $.error('Invalid method name ' + method + ' to tinyPopup plugin');
                 }
                 else {
-                    popup[method].apply(popup, args.slice(1));
+                    popupLayer[method].apply(popupLayer, args.slice(1));
                 }
             }
             else {
