@@ -6,7 +6,7 @@
     <title>Popup Demo Page</title>
     <link type="text/css" rel="Stylesheet" href="../main.css" />
     <script type="text/javascript" src="../jquery-1.7.2.min.js"></script>
-    <script type="text/javascript" src="../tinyPopup.js"></script>
+    <script type="text/javascript" src="../miniPopup.js"></script>
     <style type="text/css">
     .box {
         width: 800px;
@@ -22,29 +22,29 @@
     <input type="button" class="ShowDemo" value="Show Popup" />
     <div class="box">
         <p>Content box.</p>
-        <div class="tiny-popup-mask" style="filter: alpha(opacity=70); opacity: 0.7;"></div>
-        <div class="tiny-popup">
-            <div class="tiny-popup-header">
-                <div class="tiny-popup-buttons tiny-popup-close" title="Close"></div>
+        <div class="mini-popup-mask" style="filter: alpha(opacity=70); opacity: 0.7;"></div>
+        <div class="mini-popup">
+            <div class="mini-popup-header">
+                <div class="mini-popup-buttons mini-popup-close" title="Close"></div>
             </div>
-            <div class="tiny-popup-content">
+            <div class="mini-popup-content">
                 <p>Some your content here 1. Some your content here 1.</p>
                 <p>Some your content here 2. Some your content here 2.</p>
                 <p>Some your content here 3. Some your content here 3.</p>
                 <p>Some your content here 4. Some your content here 4.</p>
                 <p>Some your content here 5. Some your content here 5.</p>
             </div>
-            <div class="tiny-popup-footer">
+            <div class="mini-popup-footer">
                 <div class="confirm">
-                    <div class="tiny-popup-buttons confirm-btn">
+                    <div class="mini-popup-buttons confirm-btn">
                         <input type="button" class="confirmbtn" value="Confirm" />
-                        <span class="tiny-popup-buttons confirm-left"></span>
+                        <span class="mini-popup-buttons confirm-left"></span>
                     </div>
                 </div>
                 <div class="cancel">
-                    <div class="tiny-popup-buttons cancel-btn">
+                    <div class="mini-popup-buttons cancel-btn">
                         <input type="button" class="cancelbtn" value="Cancel" />
-                        <span class="tiny-popup-buttons cancel-left"></span>
+                        <span class="mini-popup-buttons cancel-left"></span>
                     </div>
                 </div>
             </div>
@@ -83,21 +83,21 @@
     <script type="text/javascript">
     $(function() {
 
-        var popup = $('.tiny-popup').tinyPopup({
+        var popup = $('.mini-popup').miniPopup({
             container: '.box',
             beforeOpen: function() {
-                console.log('The tinyPopup beforeOpen.');
+                console.log('The miniPopup beforeOpen.');
             },
             beforeClose: function() {
-                console.log('The tinyPopup beforeClose');
+                console.log('The miniPopup beforeClose');
             }
         });
         $('.ShowDemo').click(function() {
-            popup.tinyPopup('open');
+            popup.miniPopup('open');
         });
 
-        $('.tiny-popup-close, .cancel-btn').click(function() {
-            popup.tinyPopup('close');
+        $('.mini-popup-close, .cancel-btn').click(function() {
+            popup.miniPopup('close');
         });
     });
     </script>

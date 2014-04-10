@@ -10,7 +10,7 @@ p {
 }
 
 /* popup style */
-.tiny-popup-mask {
+.mini-popup-mask {
     position: absolute;
     z-index: 9998;
     top: 0px;
@@ -22,7 +22,7 @@ p {
     filter: alpha(opacity=70);
     opacity: 0.7;
 }
-.tiny-popup {
+.mini-popup {
     position: absolute;
     z-index: 9999;
     width: 495px;
@@ -33,18 +33,18 @@ p {
     display: none;
     font-size: 12px;
 }
-.tiny-popup-buttons {
+.mini-popup-buttons {
     background: url(images/popup-buttons.png) no-repeat;
     display: inline-block;
 }
-*+html .tiny-popup-buttons {
+*+html .mini-popup-buttons {
     display: inline;
 }
-.tiny-popup-header {
+.mini-popup-header {
     height: 13px;
     clear: both;
 }
-.tiny-popup-close {
+.mini-popup-close {
     float: right;
     width: 13px;
     height: 13px;
@@ -52,17 +52,17 @@ p {
     cursor: pointer;
     background-position: 0 -80px;
 }
-.tiny-popup-content {
+.mini-popup-content {
     margin: 0 35px 0 45px;
     padding-bottom: 32px;
     border-bottom: 1px solid #858585;
     color: #3D4550;
 }
-.tiny-popup-content p {
+.mini-popup-content p {
     margin: 15px 0 0 0;
     line-height: 18px;
 }
-.tiny-popup-footer {
+.mini-popup-footer {
     margin: 25px 45px 0 45px;
     height: 35px;
 }

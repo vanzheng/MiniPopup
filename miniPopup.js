@@ -3,7 +3,7 @@
         this.settings = opts;
         this.mask = $(opts.mask);
         this.popup = opts.popup;
-        this.popup.data('tinypopup', this);
+        this.popup.data('minipopup', this);
 
         var _this = this;
         if (opts.adaptive) {
@@ -87,7 +87,7 @@
         }
     };
 
-    $.fn.tinyPopup = function() {
+    $.fn.miniPopup = function() {
         var args = Array.prototype.slice.call(arguments, 0);
         var opts;
 
@@ -96,7 +96,7 @@
 
             // If the arguments is object, create a new PopupLayer object.
             if (typeof args.length === 0 || typeof(args[0]) === 'object') {
-                opts = args.length === 0 ? $.fn.tinyPopup.defaults : $.extend({}, $.fn.tinyPopup.defaults, args[0]);
+                opts = args.length === 0 ? $.fn.miniPopup.defaults : $.extend({}, $.fn.miniPopup.defaults, args[0]);
                 opts.popup = _this;
                 new PopupLayer(opts);
             }
@@ -104,27 +104,27 @@
             // If the arguments is a string, get PopupLayer instance from data.
             else if (typeof(args[0]) === 'string') {
                 var method = args[0];
-                var popupLayer = _this.data('tinypopup');
+                var popupLayer = _this.data('minipopup');
 
                 if (popupLayer === undefined) {
                     return;
                 }
 
                 if (popupLayer[method] === undefined) {
-                    $.error('Invalid method name ' + method + ' to tinyPopup plugin');
+                    $.error('Invalid method name ' + method + ' to miniPopup plugin');
                 }
                 else {
                     popupLayer[method].apply(popupLayer, args.slice(1));
                 }
             }
             else {
-                $.error("Invalid arguments to tinyPopup plugin: " + args);
+                $.error("Invalid arguments to miniPopup plugin: " + args);
             }
         });
     }
 
-    $.fn.tinyPopup.defaults = {
-        mask: '.tiny-popup-mask',
+    $.fn.miniPopup.defaults = {
+        mask: '.mini-popup-mask',
         container: 'body',
         speed: 300,
         adaptive: true,

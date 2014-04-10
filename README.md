@@ -1,4 +1,4 @@
-TinyPopup
+MiniPopup
 =========
 
 jQuery popup plugin
