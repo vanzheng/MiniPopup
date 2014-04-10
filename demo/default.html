@@ -63,16 +63,20 @@
             beforeOpen: function() {
                 console.log('The tinyPopup beforeOpen.');
             },
-            afterClose: function() {
-                console.log('The tinyPopup afterClose');
+            beforeClose: function() {
+                console.log('The tinyPopup beforeClose');
             }
         });
         $('.ShowDemo').click(function() {
-            popup.tinyPopup('open');
+            popup.tinyPopup('open', function() {
+                console.log('The tinpPopup is opened.')
+            });
         });
 
         $('.tiny-popup-close, .cancel-btn').click(function() {
-            popup.tinyPopup('close');
+            popup.tinyPopup('close', function() {
+                console.log('The tinpPopup is closed.')
+            });
         });
     });
     </script>

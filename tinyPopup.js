@@ -57,25 +57,24 @@
                 'top': scrollTop + (wh - popupHeight) / 2
             });
         },
-        open: function() {
+        open: function(callback) {
             var _popup = this.popup;
+
             this.settings.beforeOpen();
             this.setPosition();
 
             if (this.hasMaskLayer()) {
                 this.mask.fadeIn(this.settings.speed);
-                _popup.fadeIn(this.settings.speed);
+                _popup.fadeIn(this.settings.speed, callback);
             }
             else {
-                _popup.fadeIn(this.settings.speed);
+                _popup.fadeIn(this.settings.speed, callback);
             }
         },
-        close: function() {
-            this.popup.hide();
-            if (this.hasMaskLayer()) {
-                this.mask.hide();
-            }
-            this.settings.afterClose();
+        close: function(callback) {
+            this.settings.beforeClose();
+            this.popup.fadeOut(this.settings.speed, callback);
+            this.mask.fadeOut(this.settings.speed);
         },
         hasMaskLayer: function() {
             var mask = this.settings.mask;
@@ -130,6 +129,6 @@
         speed: 300,
         adaptive: true,
         beforeOpen: function() {},
-        afterClose: function() {}
+        beforeClose: function() {}
     };
 })(jQuery);
