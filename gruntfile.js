@@ -12,7 +12,7 @@ module.exports = function (grunt) {
 			},
 			my_target: {
 			  files: {
-				'dest/tinyPopup.min.js': ['tinyPopup.js']
+				'dist/miniPopup.min.js': ['miniPopup.js']
 			  }
 			}
 		}
