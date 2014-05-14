@@ -1,3 +1,7 @@
+/**
+* @author vanzheng
+*/
+
 (function($) {
     function PopupLayer(opts) {
         this.settings = opts;
@@ -57,6 +61,15 @@
                 'top': scrollTop + (wh - popupHeight) / 2
             });
         },
+
+        /**
+        * @name miniPopup#open
+        *
+        * @public
+        * @desc Opens popup.
+        * @param {Function} callback While popup is opened, it trigger callback function.
+        * @method
+        */
         open: function(callback) {
             var _popup = this.popup;
 
@@ -71,11 +84,24 @@
                 _popup.fadeIn(this.settings.speed, callback);
             }
         },
+
+        /**
+        * @name miniPopup#close
+        *
+        * @public
+        * @desc Closes popup.
+        * @param {Function} callback While popup is closed, it trigger callback function.
+        * @method
+        */
         close: function(callback) {
             this.settings.beforeClose();
             this.popup.fadeOut(this.settings.speed, callback);
             this.mask.fadeOut(this.settings.speed);
         },
+
+        /**
+        * Identify the popup whether has mask layer.
+        */
         hasMaskLayer: function() {
             var mask = this.settings.mask;
             if (mask && mask.length > 0 && $(mask).length > 0) {
@@ -87,6 +113,21 @@
         }
     };
 
+    /**
+    * jQuery plugin initialization
+    * 
+    * @name miniPopup
+    * @class
+    * @extends jQuery
+    * @public
+    * @param {Object} option
+    * @param {String} option.mask The mask, the mask layer selector.
+    * @param {String} option.container The container, the popup container selector.
+    * @param {Number} option.speed The speed, the mask layer and popup fade in and fade out speed.
+    * @param {Boolean} option.adaptive The adaptive, The mask layer and popup adaptive while window resized.
+    * @param {Function} option.beforeOpen before popup open trigger the function.
+    * @param {Function} option.beforeClass before popup close trigger the function.
+    */
     $.fn.miniPopup = function() {
         var args = Array.prototype.slice.call(arguments, 0);
         var opts;
@@ -123,6 +164,12 @@
         });
     }
 
+    /**
+    * The miniPopup plugin defaults.
+    *
+    * @public
+    * @type {object}
+    */
     $.fn.miniPopup.defaults = {
         mask: '.mini-popup-mask',
         container: 'body',
