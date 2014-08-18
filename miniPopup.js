@@ -20,6 +20,7 @@
     PopupLayer.prototype = {
         setPosition: function() {
             var scrollWidth, scrollHeight, clientWidth, clientHeight, scrollTop, realWidth, realHeight, ww, wh, popupWidth, popupHeight;
+            var containerLeft, containerTop;
             var $container = $(this.settings.container);
 
             if (this.settings.container.toLowerCase() === 'body') {
@@ -32,33 +33,35 @@
                 realHeight = scrollHeight > clientHeight ? scrollHeight : clientHeight;
                 ww = $(window).width();
                 wh = $(window).height();
-                popupWidth = this.popup.outerWidth();
-                popupHeight = this.popup.outerHeight();
+                popupWidth = this.popup.outerWidth(true);
+                popupHeight = this.popup.outerHeight(true);
+                containerLeft = 0;
+                containerTop = 0;
             }
             else {
-                scrollWidth = $container[0].scrollWidth;
-                scrollHeight = $container[0].scrollHeight;
-                clientWidth = $container[0].clientWidth;
-                clientHeight = $container[0].clientHeight;
-                scrollTop = $container[0].scrollTop;
-                realWidth = scrollWidth > clientWidth ? scrollWidth : clientWidth;
-                realHeight = scrollHeight > clientHeight ? scrollHeight : clientHeight;
-                ww = $container[0].clientWidth;
-                wh = $container[0].clientHeight;
-                popupWidth = this.popup.outerWidth();
-                popupHeight = this.popup.outerHeight();
+                scrollTop = 0;
+                ww = $container.outerWidth();
+                wh = $container.outerHeight();
+                realWidth = $container.outerWidth();
+                realHeight = $container.outerHeight();
+                popupWidth = this.popup.outerWidth(true);
+                popupHeight = this.popup.outerHeight(true);
+                containerLeft = $container.offset().left;
+                containerTop = $container.offset().top;
             }
 
             if (this.hasMaskLayer()) {
                 this.mask.css({
-                    'top': 0,
-                    'left': 0
+                    'top': containerTop,
+                    'left': containerLeft,
+                    'position': 'absolute'
                 }).width(realWidth).height(realHeight);
             }
 
             this.popup.css({
-                'left': (ww - popupWidth) / 2,
-                'top': scrollTop + (wh - popupHeight) / 2
+                'left': containerLeft + (ww - popupWidth) / 2,
+                'top': containerTop + scrollTop + (wh - popupHeight) / 2,
+                'position': 'absolute'
             });
         },
 
