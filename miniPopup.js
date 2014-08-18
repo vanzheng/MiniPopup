@@ -8,16 +8,23 @@
         this.mask = $(opts.mask);
         this.popup = opts.popup;
         this.popup.data('minipopup', this);
-
-        var _this = this;
-        if (opts.adaptive) {
-            $(window).bind('resize', function() {
-                _this.setPosition();
-            });
-        }
+        this.init();        
     }
 
     PopupLayer.prototype = {
+        init: function(){
+            var _this = this;
+
+            if (this.settings.adaptive) {
+                $(window).bind('resize', function() {
+                    _this.setPosition();
+                });
+            }
+
+            this.popup.find(this.settings.closeButton).bind('click', function(){
+                _this.close($.noop);
+            });
+        },
         setPosition: function() {
             var scrollWidth, scrollHeight, clientWidth, clientHeight, scrollTop, realWidth, realHeight, ww, wh, popupWidth, popupHeight;
             var containerLeft, containerTop;
@@ -178,6 +185,7 @@
         container: 'body',
         speed: 300,
         adaptive: true,
+        closeButton: '.close, .cancel',
         beforeOpen: function() {},
         beforeClose: function() {}
     };

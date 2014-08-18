@@ -25,7 +25,7 @@
     <div class="mini-popup-mask" style="filter: alpha(opacity=70); opacity: 0.7;"></div>
     <div class="mini-popup">
         <div class="mini-popup-header">
-            <div class="mini-popup-buttons mini-popup-close" title="Close"></div>
+            <div class="mini-popup-buttons mini-popup-close  close" title="Close"></div>
         </div>
         <div class="mini-popup-content">
             <p>Some your content here 1. Some your content here 1.</p>
@@ -42,7 +42,7 @@
                 </div>
             </div>
             <div class="cancel">
-                <div class="mini-popup-buttons cancel-btn">
+                <div class="mini-popup-buttons cancel-btn cancel">
                     <input type="button" class="cancelbtn" value="Cancel" />
                     <span class="mini-popup-buttons cancel-left"></span>
                 </div>
@@ -66,11 +66,11 @@
             });
         });
 
-        $('.mini-popup-close, .cancel-btn').click(function() {
-            popup.miniPopup('close', function() {
-                console.log('The miniPopup is closed.')
-            });
-        });
+        // $('.mini-popup-close, .cancel-btn').click(function() {
+        //     popup.miniPopup('close', function() {
+        //         console.log('The miniPopup is closed.')
+        //     });
+        // });
     });
     </script>
 </body>
