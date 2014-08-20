@@ -80,15 +80,17 @@
         * @param {Function} callback While popup is opened, it trigger callback function.
         * @method
         */
-        open: function(callback) {
+        open: function (callback) {
+            var _this = this;
             var _popup = this.popup;
 
             this.settings.beforeOpen();
             this.setPosition();
 
             if (this.hasMaskLayer()) {
-                this.mask.fadeIn(this.settings.speed);
-                _popup.fadeIn(this.settings.speed, callback);
+                this.mask.fadeIn(this.settings.speed, function () {
+                    _popup.fadeIn(_this.settings.speed, callback);
+                });
             }
             else {
                 _popup.fadeIn(this.settings.speed, callback);
