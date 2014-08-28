@@ -88,13 +88,10 @@
             this.setPosition();
 
             if (this.hasMaskLayer()) {
-                this.mask.fadeIn(this.settings.speed, function () {
-                    _popup.fadeIn(_this.settings.speed, callback);
-                });
+                this.mask.fadeIn(this.settings.speed);
             }
-            else {
-                _popup.fadeIn(this.settings.speed, callback);
-            }
+
+            _popup.fadeIn(this.settings.speed, this.rectify(callback));
         },
 
         /**
@@ -107,7 +104,7 @@
         */
         close: function(callback) {
             this.settings.beforeClose();
-            this.popup.fadeOut(this.settings.speed, callback);
+            this.popup.fadeOut(this.settings.speed, this.rectify(callback));
             this.mask.fadeOut(this.settings.speed);
         },
 
@@ -122,6 +119,13 @@
             else {
                 return false;
             }
+        },
+        rectify: function(callback) {
+            if (typeof callback !== 'function'){
+                return $.noop;
+            }
+
+            return callback;
         }
     };
 
