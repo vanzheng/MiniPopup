@@ -17,7 +17,7 @@
             if (this.settings.modal) {
                 this.$maskLayer = $('<div />', {
                     class: this.settings.maskClass
-                }).appendTo($('body'));
+                }).hide().appendTo($('body'));
             }
 
             if (this.settings.adaptive) {
