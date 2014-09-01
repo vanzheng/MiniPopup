@@ -1,19 +1,24 @@
 /**
-* @author vanzheng
-*/
+ * @author vanzheng
+ */
 
 (function($) {
     function PopupLayer(opts) {
         this.settings = opts;
-        this.mask = $(opts.mask);
-        this.popup = opts.popup;
-        this.popup.data('minipopup', this);
-        this.init();        
+        this.$popup = opts.popup;
+        this.$popup.data('minipopup', this);
+        this.init();
     }
 
     PopupLayer.prototype = {
-        init: function(){
+        init: function() {
             var _this = this;
+
+            if (this.settings.modal) {
+                this.$maskLayer = $('<div />', {
+                    class: this.settings.maskClass
+                }).appendTo($('body'));
+            }
 
             if (this.settings.adaptive) {
                 $(window).bind('resize', function() {
@@ -21,13 +26,26 @@
                 });
             }
 
-            this.popup.find(this.settings.closeButton).bind('click', function(){
+            this.$popup.delegate(this.settings.closeButton, 'click', function(e) {
+                e.stopPropagation();
                 _this.close($.noop);
             });
         },
         setPosition: function() {
-            var scrollWidth, scrollHeight, clientWidth, clientHeight, scrollTop, realWidth, realHeight, ww, wh, popupWidth, popupHeight;
-            var containerLeft, containerTop;
+            var scrollWidth,
+                scrollHeight,
+                clientWidth,
+                clientHeight,
+                scrollTop,
+                realWidth,
+                realHeight,
+                ww,
+                wh,
+                popupWidth,
+                popupHeight,
+                containerLeft,
+                containerTop;
+
             var $container = $(this.settings.container);
 
             if (this.settings.container.toLowerCase() === 'body') {
@@ -40,8 +58,6 @@
                 realHeight = scrollHeight > clientHeight ? scrollHeight : clientHeight;
                 ww = $(window).width();
                 wh = $(window).height();
-                popupWidth = this.popup.outerWidth(true);
-                popupHeight = this.popup.outerHeight(true);
                 containerLeft = 0;
                 containerTop = 0;
             }
@@ -51,21 +67,23 @@
                 wh = $container.outerHeight();
                 realWidth = $container.outerWidth();
                 realHeight = $container.outerHeight();
-                popupWidth = this.popup.outerWidth(true);
-                popupHeight = this.popup.outerHeight(true);
                 containerLeft = $container.offset().left;
                 containerTop = $container.offset().top;
             }
 
-            if (this.hasMaskLayer()) {
-                this.mask.css({
+            popupWidth = this.$popup.outerWidth();
+            popupHeight = this.$popup.outerHeight();
+
+            if (this.settings.modal) {
+                this.$maskLayer.css({
                     'top': containerTop,
                     'left': containerLeft,
-                    'position': 'absolute'
+                    'position': 'absolute',
+                    'opacity': this.settings.opacity,
                 }).width(realWidth).height(realHeight);
             }
 
-            this.popup.css({
+            this.$popup.css({
                 'left': containerLeft + (ww - popupWidth) / 2,
                 'top': containerTop + scrollTop + (wh - popupHeight) / 2,
                 'position': 'absolute'
@@ -73,55 +91,45 @@
         },
 
         /**
-        * @name miniPopup#open
-        *
-        * @public
-        * @desc Opens popup.
-        * @param {Function} callback While popup is opened, it trigger callback function.
-        * @method
-        */
-        open: function (callback) {
+         * @name miniPopup#open
+         *
+         * @public
+         * @desc Opens popup.
+         * @param {Function} callback While popup is opened, it trigger callback function.
+         * @method
+         */
+        open: function(callback) {
             var _this = this;
-            var _popup = this.popup;
+            var _popup = this.$popup;
 
             this.settings.beforeOpen();
             this.setPosition();
 
-            if (this.hasMaskLayer()) {
-                this.mask.fadeIn(this.settings.speed);
+            if (this.settings.modal) {
+                this.$maskLayer.fadeIn(this.settings.speed);
             }
 
-            _popup.fadeIn(this.settings.speed, this.rectify(callback));
+            _popup.fadeIn(this.settings.speed, this.rectifyCallback(callback));
         },
 
         /**
-        * @name miniPopup#close
-        *
-        * @public
-        * @desc Closes popup.
-        * @param {Function} callback While popup is closed, it trigger callback function.
-        * @method
-        */
+         * @name miniPopup#close
+         *
+         * @public
+         * @desc Closes popup.
+         * @param {Function} callback While popup is closed, it trigger callback function.
+         * @method
+         */
         close: function(callback) {
             this.settings.beforeClose();
-            this.popup.fadeOut(this.settings.speed, this.rectify(callback));
-            this.mask.fadeOut(this.settings.speed);
-        },
+            this.$popup.fadeOut(this.settings.speed, this.rectifyCallback(callback));
 
-        /**
-        * Identify the popup whether has mask layer.
-        */
-        hasMaskLayer: function() {
-            var mask = this.settings.mask;
-            if (mask && mask.length > 0 && $(mask).length > 0) {
-                return true;
-            }
-            else {
-                return false;
+            if (this.settings.modal) {
+                this.$maskLayer.fadeOut(this.settings.speed);
             }
         },
-        rectify: function(callback) {
-            if (typeof callback !== 'function'){
+        rectifyCallback: function(callback) {
+            if (typeof callback !== 'function') {
                 return $.noop;
             }
 
@@ -130,20 +138,20 @@
     };
 
     /**
-    * jQuery plugin initialization
-    * 
-    * @name miniPopup
-    * @class
-    * @extends jQuery
-    * @public
-    * @param {Object} option
-    * @param {String} option.mask The mask, the mask layer selector.
-    * @param {String} option.container The container, the popup container selector.
-    * @param {Number} option.speed The speed, the mask layer and popup fade in and fade out speed.
-    * @param {Boolean} option.adaptive The adaptive, The mask layer and popup adaptive while window resized.
-    * @param {Function} option.beforeOpen before popup open trigger the function.
-    * @param {Function} option.beforeClass before popup close trigger the function.
-    */
+     * jQuery plugin initialization
+     *
+     * @name miniPopup
+     * @class
+     * @extends jQuery
+     * @public
+     * @param {Object} option
+     * @param {String} option.maskClass The maskClass, the maskClass layer selector.
+     * @param {String} option.container The container, the popup container selector.
+     * @param {Number} option.speed The speed, the maskClass layer and popup fade in and fade out speed.
+     * @param {Boolean} option.adaptive The adaptive, The maskClass layer and popup adaptive while window resized.
+     * @param {Function} option.beforeOpen before popup open trigger the function.
+     * @param {Function} option.beforeClass before popup close trigger the function.
+     */
     $.fn.miniPopup = function() {
         var args = Array.prototype.slice.call(arguments, 0);
         var opts;
@@ -181,17 +189,19 @@
     }
 
     /**
-    * The miniPopup plugin defaults.
-    *
-    * @public
-    * @type {object}
-    */
+     * The miniPopup plugin defaults.
+     *
+     * @public
+     * @type {object}
+     */
     $.fn.miniPopup.defaults = {
-        mask: '.mini-popup-mask',
+        maskClass: 'mini-popup-mask',
         container: 'body',
+        modal: true,
         speed: 300,
         adaptive: true,
         closeButton: '.close, .cancel',
+        opacity: 0.5,
         beforeOpen: function() {},
         beforeClose: function() {}
     };
