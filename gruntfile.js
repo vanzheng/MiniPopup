@@ -15,13 +15,13 @@ module.exports = function(grunt) {
             },
             my_target: {
                 files: {
-                    'dest/miniPopup.min.js': ['miniPopup.js']
+                    'dest/miniPopup.min.js': ['src/miniPopup.js']
                 }
             }
         },
         jsdoc: {
             dist: {
-                src: ['miniPopup.js'],
+                src: ['src/miniPopup.js'],
                 options: {
                     destination: 'dest/doc'
                 }
