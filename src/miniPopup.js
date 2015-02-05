@@ -1,8 +1,16 @@
-/**
- * @author vanzheng
+/*!
+ * jQuery plugin miniPopup
+ * 
+ * @author      Van Zheng (zgbjili2009@126.com)
+ * @copyright   Copyright (c) Van Zheng.
+ * @license     This miniPopup jQuery plugin is licensed under the MIT licenses.
+ * @version     Version 0.9.0
+ *
  */
 
 (function($) {
+    'use strict';
+
     function PopupLayer(opts) {
         this.settings = opts;
         this.$popup = opts.popup;
@@ -91,10 +99,8 @@
         },
 
         /**
-         * @name miniPopup#open
+         * Open the popup.
          *
-         * @public
-         * @desc Opens popup.
          * @param {Function} callback While popup is opened, it trigger callback function.
          * @method
          */
@@ -113,10 +119,8 @@
         },
 
         /**
-         * @name miniPopup#close
+         * Close the popup.
          *
-         * @public
-         * @desc Closes popup.
          * @param {Function} callback While popup is closed, it trigger callback function.
          * @method
          */
@@ -138,19 +142,10 @@
     };
 
     /**
-     * jQuery plugin initialization
-     *
-     * @name miniPopup
-     * @class
-     * @extends jQuery
-     * @public
-     * @param {Object} option
-     * @param {String} option.maskClass The maskClass, the maskClass layer selector.
-     * @param {String} option.container The container, the popup container selector.
-     * @param {Number} option.speed The speed, the maskClass layer and popup fade in and fade out speed.
-     * @param {Boolean} option.adaptive The adaptive, The maskClass layer and popup adaptive while window resized.
-     * @param {Function} option.beforeOpen before popup open trigger the function.
-     * @param {Function} option.beforeClass before popup close trigger the function.
+     * Display the customized popup on the matched elements.
+     * @param {(Object|string)=} opts The options object to use for the plugin, or
+     *     the name of a method to invoke on the first matched element.
+     * @return {jQuery} jQuery object for the matched selectors.
      */
     $.fn.miniPopup = function() {
         var args = Array.prototype.slice.call(arguments, 0);
@@ -190,9 +185,6 @@
 
     /**
      * The miniPopup plugin defaults.
-     *
-     * @public
-     * @type {object}
      */
     $.fn.miniPopup.defaults = {
         maskClass: 'mini-popup-mask',
