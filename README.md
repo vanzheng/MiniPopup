@@ -2,12 +2,10 @@
 
 ##Overview
 The jQuery MiniPopup Plugin helps you to easily create the customized popup window.
-
  
 ##API
 
-
-##Methods
+###Methods
 
 ###open(callback)
 Open the popup. The callback function is invoked while the popup is opened.
@@ -16,34 +14,41 @@ Open the popup. The callback function is invoked while the popup is opened.
 Close the popup. The callback function is invoked while the popup is close.
 
 
-##Options
+###Options
 
 ###maskClass
 Default value: mini-popup-mask
-The mask class name.
+
+The mask layer class name.
 
 ###container
-Default value: body
+Default value: `body`
+
 The popup layer container selector.
 
 ###modal
-Default value: true
+Default value: `true`
+
 Indicates the popup with modal or not.
 
 ###speed
-Default value: 300
+Default value: `300`
+
 The popup open or close speed.
 
 ###relocation
-Default value: true
+Default value: `true`
+
 Indicates the popup whether will relocation.
 
 ###closeButton
-Default value: .close, cancel
-The close button selector.
+Default value: `.close, cancel`
+
+The close button element jQuery selector.
 
 ###opacity
-Default value: 0.5
+Default value: `0.5`
+
 The modal layer opacity.
 
 ###beforeOpen
