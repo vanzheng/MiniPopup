@@ -3,11 +3,9 @@
 ##Overview
 The jQuery MiniPopup Plugin helps you to easily create the customized popup window.
 
----
  
 ##API
 
----
 
 ##Methods
 
@@ -17,7 +15,6 @@ Open the popup. The callback function is invoked while the popup is opened.
 ###close(callback)
 Close the popup. The callback function is invoked while the popup is close.
 
----
 
 ##Options
 
@@ -54,5 +51,3 @@ The before open popup handler.
 
 ###beforeClose
 The before close popup handler.
-
----
