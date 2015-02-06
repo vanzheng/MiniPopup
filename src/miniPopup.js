@@ -28,7 +28,7 @@
                 }).hide().appendTo($('body'));
             }
 
-            if (this.settings.adaptive) {
+            if (this.settings.relocation) {
                 $(window).bind('resize', function() {
                     _this.setPosition();
                 });
@@ -191,7 +191,7 @@
         container: 'body',
         modal: true,
         speed: 300,
-        adaptive: true,
+        relocation: true,
         closeButton: '.close, .cancel',
         opacity: 0.5,
         beforeOpen: function() {},
